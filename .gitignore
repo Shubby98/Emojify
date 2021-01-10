@@ -1,4 +1,6 @@
 __pycache__
 .idea
 .vscode
-.ipynb_checkpoints
+.ipynb_checkpoints/
+emoji_model.h5
+model.h5

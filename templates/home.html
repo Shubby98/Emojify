@@ -1,19 +1,93 @@
 <!DOCTYPE html>
-<head>
 
+<head>
+    <meta charset="UTF-8">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        console.log("running");
+        $(function() {
+            $('#sbt_btn').click(function() {
+                var text = $('#inputtext').val();
+
+                $.ajax({
+                    url: '/get_emoji',
+                    data: {
+                        "inputtxt": text
+                    },
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                        document.getElementById('pred').innerHTML = response
+                        document.getElementById('response').innerHTML = " "
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+
+        $(function() {
+            $('#upd_btn').click(function() {
+                var text = $('#inputtext').val();
+                var actual = $('#emoji').val();
+                $.ajax({
+                    url: '/update',
+                    data: {
+                        "inputtxt": text,
+                        "actual": actual
+                    },
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                        document.getElementById('response').innerHTML = response
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
     <center>
-        <h1>Emojify</h1>
-        <form action="{{ url_for('get_emoji')  }}" , method="POST">
-            <textarea name="text" rows = "4" cols = "50" placeholder = "enter text here"></textarea>
-            <br>
-            <input type="submit" value="submit">
-        </form>
-    
-    </center>
-    
+        <h1>Emojify - Text to Emoji Converter</h1>
 
-    
+        <ul>
+            <li>Happy</li>
+            <li>Fear</li>
+            <li>Anger</li>
+            <li>Sadness</li>
+            <li>Disgust</li>
+            <li>Shame</li>
+            <li>Guilt</li>
+        </ul>
+
+        <label>Enter the text</label>
+        <input id="inputtext" type="text" name="name" placeholder="Example: I am happy today">
+
+        <input id="sbt_btn" type="submit" value="submit">
+
+        <p id="pred"></p>
+
+        <p>Select a suitable emotion for a given text if you are not satisfy with the result</p>
+        <select name="actual_emoji" id="emoji">
+            <option value="happy">Happy</option>
+            <option value="fear">Fear</option>
+            <option value="anger">Anger</option>
+            <option value="sadness">Sadness</option>
+            <option value="disgust">Disgust</option>
+            <option value="shame">Shame</option>
+            <option value="guilt">Guilt</option>
+          </select>
+
+        <input id="upd_btn" type="submit" value="update">
+        <p id="response"></p>
+    </center>
+
+
+
 </body>

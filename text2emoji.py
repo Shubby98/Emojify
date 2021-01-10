@@ -2,25 +2,28 @@ import keras
 from nltk import word_tokenize
 import numpy as np
 import pickle
+from keras.preprocessing.sequence import pad_sequences
 
+tokenizer = pickle.load(open('tokenizer.pickle','rb'))
+maxlen = 50
 
 def load_model():
-    model =  keras.models.load_model("model.h5")
+    model =  keras.models.load_model("emoji_model.h5")
     pickle_in = open("word2index.pickle","rb")
     word2idx = pickle.load(pickle_in)
     return model , word2idx
 
 def textpreprocessing(text,word2idx):
     text = word_tokenize(text.lower())
-    X = np.zeros((128 , ))
-    for i , word in enumerate(text[:128]):
-        X[i] =  word2idx.get(word , 0)
+    test_sent = tokenizer.texts_to_sequences([text])
+    test_sent = pad_sequences(test_sent, maxlen = maxlen)
     
-    return X
+    return test_sent
 
 def predict_emoji(X , model):
-    res = np.argmax(model.predict_classes(X.reshape(1,128)))
-    return res
+    res = model.predict(X)
+    res = np.argmax(res)   
+    return int(res)
     
 def get_html_emoji(result):
     #return html code of emoji
@@ -35,3 +38,25 @@ def get_html_emoji(result):
     }
 
     return emoji2code[result] 
+
+def update_model(x ,  actual , model):
+    new_test = np.vstack([x]*5)
+    actual_output = np.zeros((1,7))
+    actual_output[0,actual] = 1
+    actual_output = np.vstack([actual_output]*5)
+    model.compile(loss='categorical_crossentropy' , optimizer = 'adam' , metrics = ['acc'])
+    model.fit(new_test , actual_output , epochs = 10 , batch_size = 32 , shuffle = True)
+    model.save('emoji_model.h5')
+    return model
+
+def get_emoji_num(emoji):
+    emoji2num = {
+        "happy" : 0,
+        "fear" : 1,
+        "anger" : 2,
+        "sadness" : 3,
+        "disgust" : 4,
+        "shame" : 5,
+        "guilt" : 6
+    }
+    return emoji2num[emoji]
