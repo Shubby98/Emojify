@@ -83,14 +83,14 @@
                 <div class="col s3 m3"></div>
                 <div class="input-field col s6 m6 center-align">
                     <textarea id="inputtext" name="name" class="materialize-textarea"></textarea>
-                    <label>Enter Text Here</label>
+                    <label style="font-size: larger; color:black ;">Enter Text Here</label>
                     <input id="sbt_btn" value="submit" class="waves-effect waves-light btn-large" type="submit">
                     </input>
                 </div>
                 <div class="col s3 m3"></div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider black"></div>
             <div class="row center-align section">
                 <div class="col s3 m3 l3"></div>
                 <div class="col s6 m6 l6">
@@ -100,26 +100,51 @@
 
                     <div class="card-panel teal">
                         <div class="card-action center-align">
-                            <span class="white-text "><p id="pred" style="font-size: 18px;"> hello</p></span>
+                            <span class="white-text "><p id="pred" style="font-size: 18px;">    </p></span>
                         </div>
+
                     </div>
                 </div>
                 <div class="s3 m3"></div>
             </div>
+
         </div>
 
-        <p>Select a suitable emotion for a given text if you are not satisfy with the result</p>
-        <select name="actual_emoji" id="emoji">
-                <option value="happy">Happy</option>
-                <option value="fear">Fear</option>
-                <option value="anger">Anger</option>
-                <option value="sadness">Sadness</option>
-                <option value="disgust">Disgust</option>
-                <option value="shame">Shame</option>
-                <option value="guilt">Guilt</option>
-            </select>
-        <input id="upd_btn" type="submit" value="update">
-        <p id="response"></p>
+        <div class="row">
+            <div class="col s2 m2 l2"></div>
+            <div class="col s8 m8 l8">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text center-align">
+                        <span class="card-title" style="font-size: xx-larger;">
+                        <p>Select a suitable emoji for a given text if you are not satisfy with the result</p>
+                        </span>
+                    </div>
+                    <div class="container section">
+                        <div class="card-action section">
+                            <div class="section center-align">
+                                <select class="browser-default" name="actual_emoji" id="emoji">
+                                <option value="happy">Happy</option>
+                                <option value="fear">Fear</option>
+                                <option value="anger">Anger</option>
+                                <option value="sadness">Sadness</option>
+                                <option value="disgust">Disgust</option>
+                                <option value="shame">Shame</option>
+                                <option value="guilt">Guilt</option>
+                                </select>
+                            </div>
+                            <div class="section center-align">
+                                <input class="waves-effect waves-light btn-large" id="upd_btn" type="submit" value="update">
+                                <p id="response"></p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s2 m2 l2"></div>
+        </div>
+
         <!--<div class="container section">
 
             <div class="row">
