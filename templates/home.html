@@ -2,8 +2,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <style src="static/style.css"></style>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <script>
         console.log("running");
         $(function() {
@@ -52,42 +63,125 @@
     </script>
 </head>
 
-<body>
-    <center>
-        <h1>Emojify - Text to Emoji Converter</h1>
-
-        <ul>
-            <li>Happy</li>
-            <li>Fear</li>
-            <li>Anger</li>
-            <li>Sadness</li>
-            <li>Disgust</li>
-            <li>Shame</li>
-            <li>Guilt</li>
+<body style="background-color: #b0bec5 ;">
+    <div class="container">
+        <center>
+            <h2>Emojify - Text to Emoji Converter</h2>
+        </center>
+        <!--<ul class="collection center-align">
+            <li class="collection-item">Happy</li>
+            <li class="collection-item">Fear</li>
+            <li class="collection-item">Anger</li>
+            <li class="collection-item">Sadness</li>
+            <li class="collection-item">Disgust</li>
+            <li class="collection-item">Shame</li>
+            <li class="collection-item">Guilt</li>
         </ul>
+            -->
+        <div class="container section">
+            <div class="row">
+                <div class="col s3 m3"></div>
+                <div class="input-field col s6 m6 center-align">
+                    <textarea id="inputtext" name="name" class="materialize-textarea"></textarea>
+                    <label>Enter Text Here</label>
+                    <input id="sbt_btn" value="submit" class="waves-effect waves-light btn-large" type="submit">
+                    </input>
+                </div>
+                <div class="col s3 m3"></div>
+            </div>
 
-        <label>Enter the text</label>
-        <input id="inputtext" type="text" name="name" placeholder="Example: I am happy today">
+            <div class="divider"></div>
+            <div class="row center-align section">
+                <div class="col s3 m3 l3"></div>
+                <div class="col s6 m6 l6">
+                    <span class="card-title center-align" style="font-size: 32px;">
+                        Your Emoji</span>
 
-        <input id="sbt_btn" type="submit" value="submit">
 
-        <p id="pred"></p>
+                    <div class="card-panel teal">
+                        <div class="card-action center-align">
+                            <span class="white-text "><p id="pred" style="font-size: 18px;"> hello</p></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="s3 m3"></div>
+            </div>
+        </div>
 
         <p>Select a suitable emotion for a given text if you are not satisfy with the result</p>
         <select name="actual_emoji" id="emoji">
-            <option value="happy">Happy</option>
-            <option value="fear">Fear</option>
-            <option value="anger">Anger</option>
-            <option value="sadness">Sadness</option>
-            <option value="disgust">Disgust</option>
-            <option value="shame">Shame</option>
-            <option value="guilt">Guilt</option>
-          </select>
-
+                <option value="happy">Happy</option>
+                <option value="fear">Fear</option>
+                <option value="anger">Anger</option>
+                <option value="sadness">Sadness</option>
+                <option value="disgust">Disgust</option>
+                <option value="shame">Shame</option>
+                <option value="guilt">Guilt</option>
+            </select>
         <input id="upd_btn" type="submit" value="update">
         <p id="response"></p>
-    </center>
+        <!--<div class="container section">
+
+            <div class="row">
+                <div class="col s1 m1 l1"></div>
+                <div class="col s2 m2 l2">
+                    <div class="card-panel teal center-align">
+                        <span style="font-size: xx-large;">&#128515;</span>
+                        <br>
+                        <p style="font-size: large;">Happy</p>
+                    </div>
+                </div>
+                <div class="col s2 m2 l2"></div>
+                <div class="col s2 m2 l2">
+                    <div class="card-panel teal center-align">
+                        <span style="font-size: xx-large;">&#128515;</span>
+                        <br>
+                        <p style="font-size: large;">Happy</p>
+                    </div>
+                </div>
+                <div class="col s2 m2 l2"></div>
+                <div class="col s2 m2 l2">
+                    <div class="card-panel teal center-align">
+                        <span style="font-size: xx-large;">&#128515;</span>
+                        <br>
+                        <p style="font-size: large;">Happy</p>
+                    </div>
+                </div>
+
+                <div class="col s1 m1 l1"></div>
+            </div>
+            <div class="row">
+                <div class="col s1 m1 l1"></div>
+                <div class="col s2 m2 l2">
+                    <div class="card-panel teal center-align">
+                        <span style="font-size: xx-large;">&#128515;</span>
+                        <br>
+                        <p style="font-size: large;">Happy</p>
+                    </div>
+                </div>
+                <div class="col s2 m2 l2"></div>
+                <div class="col s2 m2 l2">
+                    <div class="card-panel teal center-align">
+                        <span style="font-size: xx-large;">&#128515;</span>
+                        <br>
+                        <p style="font-size: large;">Happy</p>
+                    </div>
+                </div>
+                <div class="col s2 m2 l2"></div>
+                <div class="col s2 m2 l2">
+                    <div class="card-panel teal center-align">
+                        <span style="font-size: xx-large;">&#128515;</span>
+                        <br>
+                        <p style="font-size: large;">Happy</p>
+                    </div>
+                </div>
+
+                <div class="col s1 m1 l1"></div>
+            </div>
+        </div>
+    -->
 
 
 
+    </div>
 </body>
